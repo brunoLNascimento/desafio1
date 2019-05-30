@@ -10,4 +10,10 @@ module.exports = {
             }
         }
     },
+
+    awesomeApi: {
+        url: "https://economia.awesomeapi.com.br"
+    }
+
+
 };

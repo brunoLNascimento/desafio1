@@ -1,10 +1,10 @@
 
 
 
-    const quotation = require('../controllers/quotation')
+    const quotation = require('../controllers/quotation_controllers')
     
     module.exports = function(server) {	
-        server.get('/quotation/:moeda1/:moeda2?/:qtd?', quotation.get)
+        server.get('/quotation/:coinFrom/:coinTo?/:amount?', quotation.get)
         //https://localhost:3000/quotation/USD/BRL/1
     
         

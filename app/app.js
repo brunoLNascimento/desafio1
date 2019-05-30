@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 consign({cwd:'app'})
-    .include('models')    
+    .include('model')    
     
     .then('controllers')
     .then('routes')
