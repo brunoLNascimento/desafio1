@@ -2,33 +2,31 @@ var mongoose = require('mongoose');
 var config = require('../config/config')
 const Quotation = mongoose.model('Quotation');
 const axios = require('axios');
+mongoose.set('debug', true)
 
-exports.get = function (req, res){
+exports.quotation = function (req, res){
     var coinFrom = req.params.coinFrom
     var coinTo = req.params.coinTo
     var retorno = 1
 
-    if(!coinFrom){ return res.status(400).send("Moeda principal é um campo obrigatório") }
-    if(!coinTo){ return res.status(400).send("Moeda a conversão é um campo obrigatório") }
-
+    if(!coinFrom) return res.status(400).send("Moeda principal é um campo obrigatório") 
+    if(!coinTo) return res.status(400).send("Moeda a ser convertida é um campo obrigatório") 
+    if(!req.params.amount) return res.status(400).send("Valor a ser convertido é um campo obrigatório") 
 
     axios.get(config.awesomeApi.url + `/${coinFrom}-${coinTo}/${retorno}`,
     {
         timeout: 5000
     }).then( response => {
         if(response.data.length){
-            var saveQuotation = retornoApi(req, response, coinFrom, coinTo)
+            var saveQuotation = awesomeApi(req, response, coinFrom, coinTo)
 
             saveQuotation.save(function(err, saved){
                 if(err){
-                    return res.status(500).send({
-                        mensagem: "Erro ao salvar cotação solicitada",
-                        err: err
-                    })
+                    return res.status(500).send("Erro ao salvar cotação solicitada")
                 }
                 if(saved){
-                    return res.status(200).send({
-                        message:  saved._doc.message,
+                    return res.status(201).send({
+                        message: saved._doc.message,
                         res: saved
                     })
                 }else{
@@ -36,19 +34,55 @@ exports.get = function (req, res){
                 }
             })    
         }else{
-            return res.status(200).send("Nenhuma valor encontrado para pesquisa.")
+            return res.status(204).send("Nenhuma valor encontrado para pesquisa.")
         }
     }).catch( err => {
-        console.log(err)
-        return res.status(500).send({
-            message: "Algo deu errado ao validar consulta!",
-            err: err
-        })
+        return res.status(500).send({message: "Algo deu errado ao validar consulta!",
+                                    error: err})
     })
 }
 
+exports.getQuotation = function (req, res){
+    var page = req.params.page
+    var limit = 10
+    var skip = page * limit
 
-retornoApi = function(req, response, coinFrom, coinTo){
+    if(req.params.id){
+        var query = { quotation_id: req.params.id, active: true }
+    }else{
+        var query = { active: true }
+    }
+
+    Quotation.find(query, function (err, response){
+        if(err){
+            return res.status(500).send("Erro ao consultar cotação")
+        }
+        if(response.length){
+            return res.status(200).send(response) 
+        }else{
+            return res.status(204).send("Nenhuma cotação encontrada!")
+        }
+    }).limit(limit).skip(skip)
+}
+
+exports.remove = function(req, res){
+    //consulta dados pelo ID, e seta active false, todas as exclusões são lógicas
+    var queryFind = { quotation_id: req.params.id, active: true }
+    var queryUpdate = { active: false }
+
+    Quotation.findOneAndUpdate(queryFind, queryUpdate, function(err, updated){
+        if(err){
+            return res.status(500).send("Erro ao atualizar")
+        }
+        if(updated){
+            return res.status(200).send("Cotação removida com sucesso!")
+        }else{
+            return res.status(204).send("Nenhuma cotação encontrada!")
+        }
+    })
+}
+
+awesomeApi = function(req, response, coinFrom, coinTo){
     var amount = req.params.amount
 
     var quotation = response.data[0]

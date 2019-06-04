@@ -15,9 +15,10 @@ var quotation = new Schema({
     timestamp: { type: Number },
     create_date: { type: Date },
     message: { type: String },
-    valueQuotation: { type: Number }
+    valueQuotation: { type: Number },
+    active: { type: Boolean, default: true}
 },{
-    'collection': quotation
+    collection: quotation
 })
 
 quotation.plugin(autoincrement, {inc_field: 'quotation_id'}).set('toJSON', {

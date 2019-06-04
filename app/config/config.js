@@ -1,6 +1,7 @@
 module.exports = {
     db: {
         url: 'mongodb://localhost:27017/desafioHurb',
+        urlTeste: 'mongodb://localhost:27017/desafioHurbTest',
         options: {
             db: {native_parser: true},
             server: {
