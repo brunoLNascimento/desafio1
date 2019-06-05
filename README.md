@@ -24,27 +24,28 @@ Para encerrar o teste unitário, CTRL + C
 https://docs.awesomeapi.com.br/api-de-moedas
 
 Cotação feita nas sequintes moedas:
-USD-BRL (Dólar Comercial)
-USDT-BRL (Dólar Turismo)
-CAD-BRL (Dólar Canadense)
-AUD-BRL (Dólar Australiano)
-EUR-BRL (Euro)
-GBP-BRL (Libra Esterlina)
-ARS-BRL (Peso Argentino)
-JPY-BRL (Iene Japonês)
-CHF-BRL (Franco Suíço)
-CNY-BRL (Yuan Chinês)
-YLS-BRL (Novo Shekel Israelense)
-BTC-BRL (Bitcoin)
-LTC-BRL (Litecoin)
-ETH-BRL (Ethereum)
-XRP-BRL (Ripple)
+USD-BRL (Dólar Comercial);
+USDT-BRL (Dólar Turismo);
+CAD-BRL (Dólar Canadense);
+AUD-BRL (Dólar Australiano);
+EUR-BRL (Euro);
+GBP-BRL (Libra Esterlina);
+ARS-BRL (Peso Argentino);
+JPY-BRL (Iene Japonês);
+CHF-BRL (Franco Suíço);
+CNY-BRL (Yuan Chinês);
+YLS-BRL (Novo Shekel Israelense);
+BTC-BRL (Bitcoin);
+LTC-BRL (Litecoin);
+ETH-BRL (Ethereum);
+XRP-BRL (Ripple).
 
 Legendas:
-key         Label
-bid         Compra
-ask         Venda
-varBid      Variação
-pctChange   Porcentagem de Variação
-high        Máximo
-low         Mínimo
+| Key      | Label |
+| --------- | -----:|
+| bid  | Compra |
+| ask     |   Venda |
+| varBid      |    Variação |
+|pctChange | Porcentagem de Variação|
+|high | Máximo|
+|low | Mínimo|
