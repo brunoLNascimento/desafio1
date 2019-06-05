@@ -13,11 +13,13 @@ exports.quotation = function (req, res){
     if(!coinTo) return res.status(400).send("Moeda a ser convertida é um campo obrigatório") 
     if(!req.params.amount) return res.status(400).send("Valor a ser convertido é um campo obrigatório") 
 
+    //Conexão com a apai da awesomeApi para fazer a cotação
     axios.get(config.awesomeApi.url + `/${coinFrom}-${coinTo}/${retorno}`,
     {
-        timeout: 5000
+        timeout: 3000
     }).then( response => {
         if(response.data.length){
+            //Função para carregar dados 
             var saveQuotation = awesomeApi(req, response, coinFrom, coinTo)
 
             saveQuotation.save(function(err, saved){
@@ -47,12 +49,14 @@ exports.getQuotation = function (req, res){
     var limit = 10
     var skip = page * limit
 
+    //Query para fazer consulta da cotação desejada por ID
     if(req.params.id){
         var query = { quotation_id: req.params.id, active: true }
     }else{
         var query = { active: true }
     }
 
+    //Consulta com paginação, exibe 10 resultados por página
     Quotation.find(query, function (err, response){
         if(err){
             return res.status(500).send("Erro ao consultar cotação")
@@ -66,7 +70,7 @@ exports.getQuotation = function (req, res){
 }
 
 exports.remove = function(req, res){
-    //consulta dados pelo ID, e seta active false, todas as exclusões são lógicas
+    //Exclusão são lógicas, altera active true para false
     var queryFind = { quotation_id: req.params.id, active: true }
     var queryUpdate = { active: false }
 
@@ -83,10 +87,14 @@ exports.remove = function(req, res){
 }
 
 awesomeApi = function(req, response, coinFrom, coinTo){
+    //Função carrega dados para salvar
     var amount = req.params.amount
-
     var quotation = response.data[0]
+    
+    //Retorno da cotação da moeda multiplicado pelo valor desejado 
     quotation.valueQuotation = parseInt(quotation.high * amount).toFixed(2)
+    
+    //Cria mensaga de exibição
     quotation.message = "Valor a ser cotado $" +amount+ ", resultado da conversão: " +coinFrom+ " para " +coinTo+ " = " +quotation.valueQuotation
     
     var saveQuotation = new Quotation({

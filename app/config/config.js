@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     db: {
         url: 'mongodb://localhost:27017/desafioHurb',
         urlTeste: 'mongodb://localhost:27017/desafioHurbTest',
@@ -15,6 +15,6 @@ module.exports = {
     awesomeApi: {
         url: "https://economia.awesomeapi.com.br"
     }
-
-
 };
+
+module.exports = config

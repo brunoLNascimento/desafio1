@@ -8,31 +8,37 @@ const config = require('../app/config/config')
 const quotationUSD = {
     coinFrom: "USD",
     coinTo: "BRL",
-    amount: "125.55"
+    amount: "125.55",
+    quotation_id: "1"
 }
 
 const quotationEUR = {
     coinFrom: "EUR",
     coinTo: "BRL",
-    amount: "1992.55"
+    amount: "1992.55",
+    quotation_id: "2"
 }
 
 const quotationETH = {
     coinFrom: "ETH",
     coinTo: "BRL",
-    amount: "1"
+    amount: "1",
+    quotation_id: "3"
 }
 
-const wrongQuotation = {
-    coinFrom: "ETH",
-    coinTo: "",
-    amount: "1"
+const deleteQuotationUSD = {
+    quotation_id: "1"
 }
 
+const deleteQuotationEUR = {
+    quotation_id: "2"
+}
+const dleteQuotationETH = {
+    quotation_id: "3"
+}
 describe( 'Testando api de cotação', () =>{
-        
     mongoose.connect(config.db.urlTeste)
-
+    
     it('#quotationUSD', done => {
         request(app)
         .get(`/quotation/${quotationUSD.coinFrom}/${quotationUSD.coinTo}/${quotationUSD.amount}`)
@@ -56,16 +62,29 @@ describe( 'Testando api de cotação', () =>{
         .expect(201)
         .end(done)
     })
-    
-  /*  it('#wrongQuotation', done => {
+
+    it('#deleteQuotationUSD', done => {
         request(app)
-        .get(`/quotation/${wrongQuotation.coinFrom}/${wrongQuotation.coinTo}/${wrongQuotation.amount}`)
+        .delete(`/removeQuotation/${deleteQuotationUSD.quotation_id}`)
         .timeout(3000)
-    //    .expect(404, "Moeda a conversão é um campo obrigatório") 
-        .end(after())
-        
-    })*/
-    
-    
+        .expect(200)
+        .end(done)
+    })
+
+    it('#deleteQuotationEUR', done => {
+        request(app)
+        .delete(`/removeQuotation/${deleteQuotationEUR.quotation_id}`)
+        .timeout(3000)
+        .expect(200)
+        .end(done)
+    })
+
+    it('#dleteQuotationETH', done => {
+        request(app)
+        .delete(`/removeQuotation/${dleteQuotationETH.quotation_id}`)
+        .timeout(3000)
+        .expect(200)
+        .end(done)
+    })
 })  
     
