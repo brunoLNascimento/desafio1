@@ -42,7 +42,7 @@ XRP-BRL (Ripple).
 
 
 | Key      | Label |
-| --------- |: -----|
+| --------- |:-----|
 | bid  | Compra |
 | ask     |   Venda |
 | varBid      |    Variação |
