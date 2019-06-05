@@ -40,9 +40,9 @@ LTC-BRL (Litecoin);
 ETH-BRL (Ethereum);
 XRP-BRL (Ripple).
 
-Legendas:
+
 | Key      | Label |
-| --------- | -----:|
+| --------- |: -----|
 | bid  | Compra |
 | ask     |   Venda |
 | varBid      |    Variação |
