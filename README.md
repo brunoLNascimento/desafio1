@@ -30,11 +30,11 @@ Você pode usar qualquer framework. Se a sua escolha for por um framework que re
 
 # Tecnologia utilizada 
 
-Linguagem utilizada: NodeJs
-Bancos Utilizado: MongoDB, Mongoose
-Teste Unitário: Mocha e Supertest
+### Linguagem utilizada: NodeJs
+### Bancos Utilizado: MongoDB, Mongoose
+### Teste Unitário: Mocha e Supertest
   
-### Rodando o sistema
+# Rodando o sistema
 
 ```sh
 $ npm install -- Instalar as dependências.
