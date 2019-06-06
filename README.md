@@ -65,7 +65,7 @@ OBS: Como sabemos que dados são extremamentes necessários, todas as exclusões
 # Consulta a API awesomeapi cotação: 
 https://docs.awesomeapi.com.br/api-de-moedas
 
-### Cotação feita nas sequintes moedas:
+### Cotação feita nas seguintes moedas:
 |Moeda de origin             |Moeda a ser convertida|
 |:---------                  |:---------            | 
 |USD (Dólar Comercial)       |BRL                   |
