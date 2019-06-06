@@ -49,7 +49,7 @@ Para encerrar o teste unitário pressione CTRL + C no terminal
 
 Abaixo segue exemplos dos caminhos para utilização da api
 
-Rota para consultar uma cotação de uma moeda para outra e retornar o valor já com conversão.
+Rota para consultar uma cotação de uma moeda para outra e retornar o valor já com conversão
 ex: htp://localhost:3000/quotation/:coinFrom/:coinTo?/:amount? => htp://localhost:3000/quotation/USD/BRL/500
 
 Essa ação irá salvar no banco de dados MongoDB, para futuras consultas e assim poder gerar uma métrica. Para consultar uma cotação específica, basta colocar o valor page 0 e o ID do documento que está salvo no banco. Para as consultas sem especificar um ID, basta colocar um número de uma página no lugar do ":page", isso fara com que a consulta retorne 10 resultados por página, as páginas começam a ser contadas com o valor 0
@@ -66,7 +66,7 @@ OBS: Como sabemos que dados são extremamentes necessários, todas as exclusões
 https://docs.awesomeapi.com.br/api-de-moedas
 
 ### Cotação feita nas seguintes moedas:
-|Moeda de origin             |Moeda a ser convertida|
+|Moeda de origem             |Moeda a ser convertida|
 |:---------                  |:---------            | 
 |USD (Dólar Comercial)       |BRL                   |
 |USDT (Dólar Turismo)        |BRL                   |
