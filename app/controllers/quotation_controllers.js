@@ -92,7 +92,7 @@ awesomeApi = function(req, response, coinFrom, coinTo){
     var quotation = response.data[0]
     
     //Retorno da cotação da moeda multiplicado pelo valor desejado 
-    quotation.valueQuotation = parseInt(quotation.high * amount).toFixed(2)
+    quotation.valueQuotation = parseFloat(quotation.high * amount).toFixed(2)
     
     //Cria mensaga de exibição
     quotation.message = "Valor a ser cotado $" +amount+ ", resultado da conversão: " +coinFrom+ " para " +coinTo+ " = " +quotation.valueQuotation
