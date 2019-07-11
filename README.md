@@ -30,11 +30,14 @@ Você pode usar qualquer framework. Se a sua escolha for por um framework que re
 
 # Tecnologia utilizada 
 
-Linguagem utilizada: NodeJs
-Bancos Utilizado: MongoDB, Mongoose
-Teste Unitário: Mocha e Supertest
+### Linguagem utilizada
+NodeJs
+### Bancos Utilizado
+MongoDB, Mongoose
+### Teste Unitário
+Mocha e Supertest
   
-### Rodando o sistema
+# Rodando o sistema
 
 ```sh
 $ npm install -- Instalar as dependências.
@@ -47,17 +50,17 @@ Para encerrar o teste unitário pressione CTRL + C no terminal
 
 # Consumindo a api:
 
-Abaixo segue exemplos dos caminhos para utilização da api;
-Rota para consultar uma cotação de uma moeda para outra e retornar o valor já com conversão.
+Abaixo segue exemplos dos caminhos para utilização da api
 
+Rota para consultar uma cotação de uma moeda para outra e retornar o valor já com conversão
 ex: htp://localhost:3000/quotation/:coinFrom/:coinTo?/:amount? => htp://localhost:3000/quotation/USD/BRL/500
 
-Essa ação irá salvar no banco de dados MongoDB, para futuras consultas e assim poder gerar uma métrica. Para consultar uma cotação específica, basta colocar o valor page 0 e o ID do documento que está salvo no banco. Para as consultas sem especificar um ID, basta colocar um número de uma página no lugar do ":page", isso fara com que a consulta retorne 10 resultados por página, as páginas começam a ser contadas com o valor 0.
-Para solicitar uma consulta siga o exemplo.
+Essa ação irá salvar no banco de dados MongoDB, para futuras consultas e assim poder gerar uma métrica. Para consultar uma cotação específica, basta colocar o valor page 0 e o ID do documento que está salvo no banco. Para as consultas sem especificar um ID, basta colocar um número de uma página no lugar do ":page", isso fara com que a consulta retorne 10 resultados por página, as páginas começam a ser contadas com o valor 0
+Para solicitar uma consulta siga o exemplo
 
 ex: http://localhost3000/findQuotation/:page/:id? => http://localhost3000/findQuotation/0/1 (consulta pelo documento salvo no banco com o ID 1), http://localhost3000/findQuotation/0 (consulta os 10 primeiros documentos salvos no banco), http://localhost3000/findQuotation/1 (consulta dos proxímos 10 documentos salvos no banco)
 
-Caso queira remover um dado, basta enviar o ID do documento a ser removido.
+Caso queira remover um dado, basta enviar o ID do documento a ser removido
 ex: http://localhost3000/removeQuotation/:id => http://localhost3000/removeQuotation/1
 
 OBS: Como sabemos que dados são extremamentes necessários, todas as exclusões são lógicas, ao "remover" um documento é setado uma flag ACTIVE = FALSE, isso fará com que os dados que estejam com a flag ACTIVE = FALSE e não retorne em suas consultas.
@@ -65,8 +68,8 @@ OBS: Como sabemos que dados são extremamentes necessários, todas as exclusões
 # Consulta a API awesomeapi cotação: 
 https://docs.awesomeapi.com.br/api-de-moedas
 
-### Cotação feita nas sequintes moedas:
-|Moeda de origin             |Moeda a ser convertida|
+### Cotação feita nas seguintes moedas:
+|Moeda de origem             |Moeda a ser convertida|
 |:---------                  |:---------            | 
 |USD (Dólar Comercial)       |BRL                   |
 |USDT (Dólar Turismo)        |BRL                   |
