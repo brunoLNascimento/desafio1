@@ -86,6 +86,24 @@ exports.remove = function(req, res){
     })
 }
 
+//RemoveTest - exclusão dos testes 
+exports.removetest = function(req, res){
+    //Exclusão são lógicas, altera active true para false
+    var queryFind = { idTest: req.params.id, active: true }
+    var queryUpdate = { active: false }
+
+    Quotation.findOneAndUpdate(queryFind, queryUpdate, function(err, updated){
+        if(err){
+            return res.status(500).send("Erro ao atualizar")
+        }
+        if(updated){
+            return res.status(200).send("Cotação removida com sucesso!")
+        }else{
+            return res.status(204).send("Nenhuma cotação encontrada!")
+        }
+    })
+}
+
 awesomeApi = function(req, response, coinFrom, coinTo){
     //Função carrega dados para salvar
     var amount = req.params.amount
@@ -97,7 +115,10 @@ awesomeApi = function(req, response, coinFrom, coinTo){
     //Cria mensaga de exibição
     quotation.message = "Valor a ser cotado $" +amount+ ", resultado da conversão: " +coinFrom+ " para " +coinTo+ " = " +quotation.valueQuotation
     
+   
+
     var saveQuotation = new Quotation({
+        idTest: req.headers.test_id,
         varBid: quotation.varBid,
         code: quotation.code,
         codein: quotation.codein,

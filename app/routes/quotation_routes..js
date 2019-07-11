@@ -9,5 +9,9 @@ module.exports = function(server) {
 
     //remove, rota para exclusão lógica
     server.delete('/removeQuotation/:id', quotation.remove)
+
+    //remove, rota para exclusão lógica teste
+    server.delete('/removetest/:id', quotation.removetest)
+    
     
 }

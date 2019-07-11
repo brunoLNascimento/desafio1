@@ -16,6 +16,7 @@ var quotation = new Schema({
     create_date: { type: Date },
     message: { type: String },
     valueQuotation: { type: Number },
+    idTest: { type: String },
     active: { type: Boolean, default: true}
 },{
     collection: quotation
