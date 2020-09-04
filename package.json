@@ -24,7 +24,7 @@
     "jsonwebtoken": "5.0.4",
     "jsts": "1.0.3",
     "mocha": "^5.2.0",
-    "mongodb": "2.2.19",
+    "mongodb": "3.6.1",
     "mongoose": "^5.5.11",
     "mongoose-sequence": "^5.0.1",
     "q": "1.4.1",
